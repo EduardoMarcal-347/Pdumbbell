@@ -1,6 +1,6 @@
 package com.marcal.pdumbbell.core.enums;
 
-public enum Muscles {
+public enum Muscle {
 
     CHEST,
     BACK,
