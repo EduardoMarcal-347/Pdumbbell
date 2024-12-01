@@ -1,7 +1,6 @@
-package com.marcal.pdumbbell.dto.common.workout;
+package com.marcal.pdumbbell.dto.common;
 
-import com.marcal.pdumbbell.core.enums.DayOfWeek;
-import com.marcal.pdumbbell.dto.common.exercise.ExerciseSessionDTO;
+import com.marcal.pdumbbell.enums.DayOfWeek;
 
 import java.util.List;
 

@@ -1,8 +1,6 @@
-package com.marcal.pdumbbell.entities.trainingset;
+package com.marcal.pdumbbell.entities;
 
-import com.marcal.pdumbbell.core.enums.WeightMetric;
-import com.marcal.pdumbbell.entities.BaseEntity;
-import com.marcal.pdumbbell.entities.exercise.ExerciseSession;
+import com.marcal.pdumbbell.enums.WeightMetric;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

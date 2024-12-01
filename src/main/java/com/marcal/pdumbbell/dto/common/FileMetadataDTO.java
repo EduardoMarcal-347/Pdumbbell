@@ -1,4 +1,4 @@
-package com.marcal.pdumbbell.dto.common.file;
+package com.marcal.pdumbbell.dto.common;
 
 public record FileMetadataDTO (
         String name,

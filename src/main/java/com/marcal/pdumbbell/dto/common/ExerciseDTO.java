@@ -1,6 +1,4 @@
-package com.marcal.pdumbbell.dto.common.exercise;
-
-import com.marcal.pdumbbell.dto.common.file.FileMetadataDTO;
+package com.marcal.pdumbbell.dto.common;
 
 public record ExerciseDTO(
         String name,

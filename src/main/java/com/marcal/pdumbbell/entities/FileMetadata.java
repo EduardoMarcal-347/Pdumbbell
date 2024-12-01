@@ -1,7 +1,6 @@
-package com.marcal.pdumbbell.entities.file;
+package com.marcal.pdumbbell.entities;
 
-import com.marcal.pdumbbell.core.enums.FileStatus;
-import com.marcal.pdumbbell.entities.BaseEntity;
+import com.marcal.pdumbbell.enums.FileStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

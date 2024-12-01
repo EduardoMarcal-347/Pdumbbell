@@ -1,8 +1,5 @@
-package com.marcal.pdumbbell.entities.exercise;
+package com.marcal.pdumbbell.entities;
 
-import com.marcal.pdumbbell.entities.BaseEntity;
-import com.marcal.pdumbbell.entities.trainingset.TrainingSet;
-import com.marcal.pdumbbell.entities.workout.Workout;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

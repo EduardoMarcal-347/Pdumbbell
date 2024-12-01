@@ -1,4 +1,4 @@
-package com.marcal.pdumbbell.core.converter;
+package com.marcal.pdumbbell.converter;
 
 import com.marcal.pdumbbell.core.utils.UUIDBinarySerializer;
 import jakarta.persistence.AttributeConverter;
