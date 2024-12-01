@@ -11,31 +11,33 @@ import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.core.type.filter.TypeFilter;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+@EnableJpaAuditing
 @SpringBootApplication
 public class PdumbbellApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PdumbbellApplication.class, args);
-	}
+    public static void main( String[] args ) {
+        SpringApplication.run( PdumbbellApplication.class, args );
+    }
 
-	@Bean
-	BeanFactoryPostProcessor beanFactoryPostProcessor(ApplicationContext beanRegistry) {
-		return beanFactory -> {
-			genericApplicationContext(
-					(BeanDefinitionRegistry) ((AnnotationConfigServletWebServerApplicationContext) beanRegistry)
-							.getBeanFactory());
-		};
-	}
+    @Bean
+    BeanFactoryPostProcessor beanFactoryPostProcessor( ApplicationContext beanRegistry ) {
+        return beanFactory -> {
+            genericApplicationContext(
+                    ( BeanDefinitionRegistry ) ( ( AnnotationConfigServletWebServerApplicationContext ) beanRegistry)
+                            .getBeanFactory( ) );
+        };
+    }
 
-	void genericApplicationContext(BeanDefinitionRegistry beanRegistry) {
-		ClassPathBeanDefinitionScanner beanDefinitionScanner = new ClassPathBeanDefinitionScanner(beanRegistry);
-		beanDefinitionScanner.addIncludeFilter(removeModelAndEntitiesFilter());
-	}
+    void genericApplicationContext( BeanDefinitionRegistry beanRegistry ) {
+        ClassPathBeanDefinitionScanner beanDefinitionScanner = new ClassPathBeanDefinitionScanner( beanRegistry );
+        beanDefinitionScanner.addIncludeFilter( removeModelAndEntitiesFilter( ) );
+    }
 
-	static TypeFilter removeModelAndEntitiesFilter() {
-		return (MetadataReader mr,
-				MetadataReaderFactory mrf) -> !mr.getClassMetadata().getClassName().startsWith("entities");
-	}
+    static TypeFilter removeModelAndEntitiesFilter( ) {
+        return ( MetadataReader mr,
+                 MetadataReaderFactory mrf ) -> !mr.getClassMetadata( ).getClassName( ).startsWith( "entities" );
+    }
 
 }
