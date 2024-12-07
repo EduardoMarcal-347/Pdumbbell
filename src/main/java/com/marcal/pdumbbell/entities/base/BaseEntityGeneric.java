@@ -1,6 +1,9 @@
-package com.marcal.pdumbbell.entities;
+package com.marcal.pdumbbell.entities.base;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Version;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -8,13 +11,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.io.Serializable;
 import java.time.Instant;
 
-
 @MappedSuperclass
 @EntityListeners( AuditingEntityListener.class )
-public abstract class BaseEntity<T> implements Serializable {
-
-    @Id
-    private T id;
+public abstract class BaseEntityGeneric implements Serializable {
 
     @CreatedDate
     @Column( name = "created_at" )
@@ -27,10 +26,5 @@ public abstract class BaseEntity<T> implements Serializable {
     @Version
     private long version;
 
-    public BaseEntity( T id ) {
-        this.id = id;
-    }
-
-    protected BaseEntity( ) {
-    }
+    protected BaseEntityGeneric( ) { }
 }

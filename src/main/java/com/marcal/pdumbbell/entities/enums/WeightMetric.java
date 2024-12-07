@@ -1,4 +1,4 @@
-package com.marcal.pdumbbell.enums;
+package com.marcal.pdumbbell.entities.enums;
 
 public enum WeightMetric {
 

@@ -1,6 +1,7 @@
-package com.marcal.pdumbbell.entities;
+package com.marcal.pdumbbell.entities.domain;
 
-import com.marcal.pdumbbell.enums.WeightMetric;
+import com.marcal.pdumbbell.entities.base.BaseEntity;
+import com.marcal.pdumbbell.entities.enums.WeightMetric;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

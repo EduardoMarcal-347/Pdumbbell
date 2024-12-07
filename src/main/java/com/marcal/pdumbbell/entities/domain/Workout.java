@@ -1,6 +1,7 @@
-package com.marcal.pdumbbell.entities;
+package com.marcal.pdumbbell.entities.domain;
 
-import com.marcal.pdumbbell.enums.DayOfWeek;
+import com.marcal.pdumbbell.entities.base.BaseEntity;
+import com.marcal.pdumbbell.entities.enums.DayOfWeek;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

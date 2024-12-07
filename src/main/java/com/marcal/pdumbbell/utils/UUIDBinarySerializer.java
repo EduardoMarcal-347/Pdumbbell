@@ -1,4 +1,4 @@
-package com.marcal.pdumbbell.core.utils;
+package com.marcal.pdumbbell.utils;
 
 import java.nio.ByteBuffer;
 import java.util.UUID;

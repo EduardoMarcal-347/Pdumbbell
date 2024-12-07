@@ -1,5 +1,6 @@
-package com.marcal.pdumbbell.entities;
+package com.marcal.pdumbbell.entities.domain;
 
+import com.marcal.pdumbbell.entities.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
