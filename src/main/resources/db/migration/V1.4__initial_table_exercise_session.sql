@@ -6,11 +6,7 @@ CREATE TABLE exercise_session
     created_at    datetime NOT NULL,
     last_modified datetime NULL,
     version       BIGINT NULL,
-    CONSTRAINT pk_exercise_session PRIMARY KEY (id),
-    CONSTRAINT CHK_exercise_session_date CHECK (
-        created_at = date_format(created_at, '%d/%m/%Y %H:%i:%s') AND
-        last_modified = date_format(last_modified, '%d/%m/%Y %H:%i:%s')
-        )
+    CONSTRAINT pk_exercise_session PRIMARY KEY (id)
 );
 
 ALTER TABLE exercise_session
