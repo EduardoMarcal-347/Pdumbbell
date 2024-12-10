@@ -11,7 +11,7 @@ public class UserResponseDTO {
 
     private String username;
 
-    private String fullName;
+    private String fullname;
 
     private String email;
 
@@ -19,21 +19,21 @@ public class UserResponseDTO {
 
     private String preferredLanguage;
 
-    private String isEmailVerified;
+    private Boolean isEmailVerified;
 
     private Instant lastLogin;
 
     private int failedLoginAttempts;
 
-    private boolean accountLocked;
+    private Boolean accountLocked;
 
     private Boolean isActive;
 
     private Instant deletedAt;
 
-    public UserResponseDTO( String username, String fullName, String email, String phoneNumber, String preferredLanguage, String isEmailVerified, Instant lastLogin, int failedLoginAttempts, boolean accountLocked, Boolean isActive, Instant deletedAt ) {
+    public UserResponseDTO( String username, String fullname, String email, String phoneNumber, String preferredLanguage, Boolean isEmailVerified, Instant lastLogin, int failedLoginAttempts, Boolean accountLocked, Boolean isActive, Instant deletedAt ) {
         this.username = username;
-        this.fullName = fullName;
+        this.fullname = fullname;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.preferredLanguage = preferredLanguage;
@@ -43,8 +43,5 @@ public class UserResponseDTO {
         this.accountLocked = accountLocked;
         this.isActive = isActive;
         this.deletedAt = deletedAt;
-    }
-
-    public UserResponseDTO( ) {
     }
 }
