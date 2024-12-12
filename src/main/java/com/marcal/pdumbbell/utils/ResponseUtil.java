@@ -1,9 +1,12 @@
 package com.marcal.pdumbbell.utils;
 
+import com.marcal.pdumbbell.dto.shared.LoginResponseDTO;
 import com.marcal.pdumbbell.dto.shared.ErrorResponseDTO;
 import com.marcal.pdumbbell.dto.shared.SuccessResponseDTO;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 public class ResponseUtil {
@@ -19,6 +22,16 @@ public class ResponseUtil {
 
     public static SuccessResponseDTO<?> createSuccessResponse( Object data, String schema ) {
         return successResponse( data, schema + " was successfully created!" );
+    }
+
+    public static LoginResponseDTO loginSuccessResponse( String token ) {
+        return new LoginResponseDTO(
+                200,
+                "Token was successfully generated!",
+                token,
+                ZonedDateTime.now( ZoneId.of( "America/SaoPaulo" ) ).toInstant( ),
+                ZonedDateTime.now( ZoneId.of( "America/SaoPaulo" ) ).plusHours( 5 ).toInstant( )
+        );
     }
 
     public static ErrorResponseDTO errorResponse( int statusCode, String message ) {
@@ -43,10 +56,10 @@ public class ResponseUtil {
         );
     }
 
-    public static ErrorResponseDTO forbiddenError( ) {
+    public static ErrorResponseDTO unexistentLoginIdentifierError( ) {
         return errorResponse(
-                403,
-                "Forbidden: Access is denied"
+                400,
+                "Unexistent user registered with this username/email"
         );
     }
 
@@ -57,12 +70,25 @@ public class ResponseUtil {
         );
     }
 
-    public static ErrorResponseDTO unexistentLoginIdentifierError( ) {
+    public static ErrorResponseDTO badPasswordError( ) {
         return errorResponse(
-                400,
-                "Unexistent user registered with this username/email"
+                401,
+                "Unauthorized: Authentication failed due to wrong password"
         );
     }
 
+    public static ErrorResponseDTO forbiddenError( ) {
+        return errorResponse(
+                403,
+                "Forbidden: Access is denied"
+        );
+    }
+
+    public static ErrorResponseDTO lockedAccountError( ) {
+        return errorResponse(
+                423,
+                "The account is locked due to too many failed attempts."
+        );
+    }
 
 }
