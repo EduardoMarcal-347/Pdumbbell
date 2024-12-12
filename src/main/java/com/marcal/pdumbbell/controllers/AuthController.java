@@ -22,12 +22,12 @@ public class AuthController {
     public AuthController( AuthService authService ) { this.authService = authService; }
 
     @PostMapping( "/signup" )
-    public ResponseEntity<BaseResponse> signup( @Valid @RequestBody UserRequestDTO dto ) {
-        return authService.signup( dto );
+    public ResponseEntity<BaseResponse> signup( @Valid @RequestBody UserRequestDTO request ) {
+        return authService.signup( request );
     }
 
     @PostMapping( "/login" )
-    public ResponseEntity<BaseResponse> login( @Valid @RequestBody LoginRequestDTO dto ) {
-        return null;
+    public ResponseEntity<BaseResponse> login( @Valid @RequestBody LoginRequestDTO request ) {
+        return authService.login( request );
     }
 }

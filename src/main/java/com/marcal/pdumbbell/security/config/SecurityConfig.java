@@ -15,7 +15,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private UserAuthenticationFilter authenticationFilter;
+    private final UserAuthenticationFilter authenticationFilter;
 
     public SecurityConfig( UserAuthenticationFilter authenticationFilter ) {
         this.authenticationFilter = authenticationFilter;
@@ -29,14 +29,10 @@ public class SecurityConfig {
                         .disable()
                 )
                 .authorizeHttpRequests( authorizeConfig -> {
-                    authorizeConfig.requestMatchers( "dumbbell/auth/**" ).permitAll( )
+                    authorizeConfig.requestMatchers( "/auth/**" ).permitAll( )
                             .anyRequest( ).authenticated( );
                 } )
-                .addFilterBefore( authenticationFilter, UsernamePasswordAuthenticationFilter.class )
-                .formLogin(formLogin -> formLogin
-                        .loginPage("/dumbbell/auth/login")
-                        .permitAll()
-                );
+                .addFilterBefore( authenticationFilter, UsernamePasswordAuthenticationFilter.class );
 
         return http.build( );
     }

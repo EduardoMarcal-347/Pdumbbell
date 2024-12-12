@@ -1,9 +1,10 @@
 package com.marcal.pdumbbell.security.filters;
 
+import com.marcal.pdumbbell.dto.request.LoginRequestDTO;
 import com.marcal.pdumbbell.entities.domain.User;
-import com.marcal.pdumbbell.repositories.UserRepository;
 import com.marcal.pdumbbell.security.auth.UserDetailsImpl;
 import com.marcal.pdumbbell.security.service.JWTokenService;
+import com.marcal.pdumbbell.services.AuthService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,13 +20,13 @@ import java.io.IOException;
 @Component
 public class UserAuthenticationFilter extends OncePerRequestFilter {
 
-    private JWTokenService jwTokenService;
+    private final JWTokenService jwTokenService;
 
-    private final UserRepository userRepository;
+    private final AuthService authService;
 
-    public UserAuthenticationFilter( JWTokenService jwTokenService, UserRepository userRepository ) {
+    public UserAuthenticationFilter( JWTokenService jwTokenService, AuthService authService ) {
         this.jwTokenService = jwTokenService;
-        this.userRepository = userRepository;
+        this.authService = authService;
     }
 
     @Override
@@ -34,11 +35,12 @@ public class UserAuthenticationFilter extends OncePerRequestFilter {
             String token = recoveryToken( request );
             if ( token != null ) {
                 String subject = jwTokenService.getSubjectFromToken( token );
-                User user = userRepository.findByUsername( subject );
-                UserDetailsImpl details = new UserDetailsImpl( user );
+                User user = authService.loadByIdentifier( new LoginRequestDTO( subject, null ) )
+                        .orElseThrow( ( ) -> new RuntimeException( "Couldn´t load user by token subject" ) );
 
-                Authentication authentication = new UsernamePasswordAuthenticationToken( details.getUsername(), null, details.getAuthorities() );
-                SecurityContextHolder.getContext().setAuthentication( authentication );
+                UserDetailsImpl details = new UserDetailsImpl( user );
+                Authentication authentication = new UsernamePasswordAuthenticationToken( details.getUsername( ), null, details.getAuthorities( ) );
+                SecurityContextHolder.getContext( ).setAuthentication( authentication );
             } else {
                 throw new RuntimeException( "Token not found." );
             }

@@ -9,18 +9,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
 @Service
 public class JWTokenService {
-    
-    @Value("${security.jwt.secret-key}")
-    private static String SECRET_KEY;
 
-    private static final String ISSUER = "pdumbbell-api";
+    private final String SECRET_KEY;
 
-    public String generateToken( UserDetails details) {
+    private final String ISSUER = "pdumbbell-api";
+
+    public JWTokenService( @Value( "${spring.security.jwt.secret-key}" ) String SECRET_KEY ) {
+        this.SECRET_KEY = SECRET_KEY;
+    }
+
+    public String generateToken( UserDetails details ) {
         try {
             return JWT.create( )
                     .withIssuer( ISSUER )
@@ -29,29 +32,29 @@ public class JWTokenService {
                     .withSubject( details.getUsername( ) )
                     .sign( Algorithm.HMAC256( SECRET_KEY ) );
         } catch ( JWTCreationException e ) {
-            throw new JWTCreationException("Error while trying to generate token", e);
+            throw new JWTCreationException( "Error while trying to generate token", e );
         }
     }
 
-    public String getSubjectFromToken(String token) {
+    public String getSubjectFromToken( String token ) {
         try {
             return JWT.require( Algorithm.HMAC256( SECRET_KEY ) )
                     .withIssuer( ISSUER )
-                    .build()
+                    .build( )
                     .verify( token )
-                    .getSubject();
+                    .getSubject( );
         } catch ( JWTVerificationException e ) {
-            throw new JWTVerificationException("Error while trying to verify token: invalid or expired", e);
+            throw new JWTVerificationException( "Error while trying to verify token: invalid or expired", e );
         }
     }
 
-    private Instant getIssuedAt() {
-        return ZonedDateTime.now( ZoneId.of( "America/SaoPaulo" )).toInstant();
+    private Instant getIssuedAt( ) {
+        return ZonedDateTime.now( ZoneOffset.UTC ).toInstant( );
     }
 
 
-    private Instant getExpiresAt() {
-        return ZonedDateTime.now( ZoneId.of( "America/SaoPaulo" )).plusHours( 5 ).toInstant();
+    private Instant getExpiresAt( ) {
+        return ZonedDateTime.now( ZoneOffset.UTC ).plusHours( 5 ).toInstant( );
     }
 
 }
