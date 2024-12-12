@@ -3,7 +3,7 @@ package com.marcal.pdumbbell.controllers;
 import com.marcal.pdumbbell.dto.request.LoginRequestDTO;
 import com.marcal.pdumbbell.dto.request.UserRequestDTO;
 import com.marcal.pdumbbell.dto.shared.BaseResponse;
-import com.marcal.pdumbbell.services.auth.AuthService;
+import com.marcal.pdumbbell.services.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -22,8 +22,8 @@ public class AuthController {
     public AuthController( AuthService authService ) { this.authService = authService; }
 
     @PostMapping( "/signup" )
-    public ResponseEntity<BaseResponse> create( @Valid @RequestBody UserRequestDTO dto ) {
-        return authService.sign( dto );
+    public ResponseEntity<BaseResponse> signup( @Valid @RequestBody UserRequestDTO dto ) {
+        return authService.signup( dto );
     }
 
     @PostMapping( "/login" )

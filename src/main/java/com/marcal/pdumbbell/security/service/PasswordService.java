@@ -1,4 +1,4 @@
-package com.marcal.pdumbbell.services.auth;
+package com.marcal.pdumbbell.security.service;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -1,7 +1,7 @@
 package com.marcal.pdumbbell.services;
 
 import com.marcal.pdumbbell.repositories.UserRepository;
-import com.marcal.pdumbbell.services.auth.PasswordService;
+import com.marcal.pdumbbell.security.service.PasswordService;
 import org.springframework.stereotype.Service;
 
 @Service
