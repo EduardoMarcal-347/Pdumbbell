@@ -45,7 +45,7 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler( Exception.class )
     public ResponseEntity<ErrorResponseDTO> handleGlobalExceptions( Exception e ) {
-        log.error( "Error during API request", e );
+        log.error( "Error during API request: ", e );
         return ResponseEntity
                 .status( HttpStatus.INTERNAL_SERVER_ERROR )
                 .body( ResponseUtil.internalServerError( ) );
