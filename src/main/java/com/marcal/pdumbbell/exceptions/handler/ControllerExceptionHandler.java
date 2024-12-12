@@ -33,7 +33,7 @@ public class ControllerExceptionHandler {
     public ResponseEntity<ErrorResponseDTO> handleUnauthorizedError( AuthenticationServiceException ex ) {
         return ResponseEntity
                 .status( HttpStatus.UNAUTHORIZED )
-                .body( ResponseUtil.unauthorizedError( ) );
+                .body( ResponseUtil.unauthorizedError( null ) );
     }
 
     @ExceptionHandler( AccessDeniedException.class )

@@ -1,11 +1,11 @@
 package com.marcal.pdumbbell.utils;
 
-import com.marcal.pdumbbell.dto.shared.LoginResponseDTO;
 import com.marcal.pdumbbell.dto.shared.ErrorResponseDTO;
+import com.marcal.pdumbbell.dto.shared.LoginResponseDTO;
 import com.marcal.pdumbbell.dto.shared.SuccessResponseDTO;
 
 import java.time.Instant;
-import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 
@@ -29,8 +29,8 @@ public class ResponseUtil {
                 200,
                 "Token was successfully generated!",
                 token,
-                ZonedDateTime.now( ZoneId.of( "America/SaoPaulo" ) ).toInstant( ),
-                ZonedDateTime.now( ZoneId.of( "America/SaoPaulo" ) ).plusHours( 5 ).toInstant( )
+                ZonedDateTime.now( ZoneOffset.UTC ).toInstant( ),
+                ZonedDateTime.now( ZoneOffset.UTC ).plusHours( 5 ).toInstant( )
         );
     }
 
@@ -63,17 +63,22 @@ public class ResponseUtil {
         );
     }
 
-    public static ErrorResponseDTO unauthorizedError( ) {
+    public static ErrorResponseDTO unauthorizedError( String message ) {
         return errorResponse(
                 401,
-                "Unauthorized: Authentication failed"
+                Optional.of( message ).orElse("Unauthorized: Authentication failed")
         );
     }
 
     public static ErrorResponseDTO badPasswordError( ) {
-        return errorResponse(
-                401,
+        return unauthorizedError(
                 "Unauthorized: Authentication failed due to wrong password"
+        );
+    }
+
+    public static ErrorResponseDTO invalidTokenError( ) {
+        return unauthorizedError(
+                "Unauthorized: Authentication failed due to invalid token"
         );
     }
 
