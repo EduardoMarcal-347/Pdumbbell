@@ -2,10 +2,12 @@ package com.marcal.pdumbbell.entities.base;
 
 import com.marcal.pdumbbell.entities.converters.UUIDToByteArrayConverter;
 import jakarta.persistence.*;
+import lombok.Getter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.UUID;
 
+@Getter
 @MappedSuperclass
 @EntityListeners( AuditingEntityListener.class)
 public abstract class BaseEntityUUID extends BaseEntityGeneric {

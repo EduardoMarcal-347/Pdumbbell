@@ -1,6 +1,6 @@
-package com.marcal.pdumbbell.core.converter;
+package com.marcal.pdumbbell.entities.converter;
 
-import com.marcal.pdumbbell.core.utils.UUIDBinarySerializer;
+import com.marcal.pdumbbell.utils.UUIDBinarySerializer;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

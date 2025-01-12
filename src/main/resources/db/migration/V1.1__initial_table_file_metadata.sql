@@ -13,9 +13,5 @@ CREATE TABLE file_metadata
     created_at    datetime     NOT NULL,
     last_modified datetime NULL,
     version       BIGINT NULL,
-    CONSTRAINT pk_file_metadata PRIMARY KEY (id),
-    CONSTRAINT CHK_file_metadata_date CHECK (
-        created_at = date_format(created_at, '%d/%m/%Y %H:%i:%s') AND
-        last_modified = date_format(last_modified, '%d/%m/%Y %H:%i:%s')
-    )
+    CONSTRAINT pk_file_metadata PRIMARY KEY (id)
 );
