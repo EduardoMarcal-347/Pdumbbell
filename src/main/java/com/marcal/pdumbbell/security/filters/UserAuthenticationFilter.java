@@ -1,6 +1,6 @@
 package com.marcal.pdumbbell.security.filters;
 
-import com.marcal.pdumbbell.dto.request.LoginRequestDTO;
+import com.marcal.pdumbbell.dto.mappers.data.UserMapper;
 import com.marcal.pdumbbell.entities.domain.User;
 import com.marcal.pdumbbell.security.auth.UserDetailsImpl;
 import com.marcal.pdumbbell.security.service.JWTokenService;
@@ -35,11 +35,11 @@ public class UserAuthenticationFilter extends OncePerRequestFilter {
             String token = recoveryToken( request );
             if ( token != null ) {
                 String subject = jwTokenService.getSubjectFromToken( token );
-                User user = authService.loadByIdentifier( new LoginRequestDTO( subject, null ) )
+                User user = authService.loadByIdentifier( subject )
                         .orElseThrow( ( ) -> new RuntimeException( "Couldn´t load user by token subject" ) );
 
                 UserDetailsImpl details = new UserDetailsImpl( user );
-                Authentication authentication = new UsernamePasswordAuthenticationToken( details.getUsername( ), null, details.getAuthorities( ) );
+                Authentication authentication = new UsernamePasswordAuthenticationToken( UserMapper.INSTANCE.toDto( user ), null, details.getAuthorities( ) );
                 SecurityContextHolder.getContext( ).setAuthentication( authentication );
             } else {
                 throw new RuntimeException( "Token not found." );
@@ -51,7 +51,7 @@ public class UserAuthenticationFilter extends OncePerRequestFilter {
     private String recoveryToken( HttpServletRequest request ) {
         String authorizationHeader = request.getHeader( "Authorization" );
         if ( authorizationHeader != null ) {
-            return authorizationHeader.replace( "Bearer", "" );
+            return authorizationHeader.replace( "Bearer", "" ).trim( );
         }
         return null;
     }

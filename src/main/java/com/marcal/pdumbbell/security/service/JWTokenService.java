@@ -11,16 +11,17 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.util.Base64;
 
 @Service
 public class JWTokenService {
 
-    private final String SECRET_KEY;
+    private final byte[] SECRET_KEY;
 
     private final String ISSUER = "pdumbbell-api";
 
     public JWTokenService( @Value( "${spring.security.jwt.secret-key}" ) String SECRET_KEY ) {
-        this.SECRET_KEY = SECRET_KEY;
+        this.SECRET_KEY = Base64.getDecoder( ).decode( SECRET_KEY );
     }
 
     public String generateToken( UserDetails details ) {

@@ -53,7 +53,7 @@ public class AuthService {
     }
 
     public ResponseEntity<BaseResponse> login( LoginRequestDTO request ) {
-        User requestUser = loadByIdentifier( request ).filter( User::getIsActive ).orElse( null );
+        User requestUser = loadByIdentifier( request.identifier() ).filter( User::getIsActive ).orElse( null );
         if ( requestUser == null ) {
             return ResponseEntity.status( HttpStatus.BAD_REQUEST )
                     .body( ResponseUtil.unexistentLoginIdentifierError( ));
@@ -85,16 +85,11 @@ public class AuthService {
                 .orElse( null );
     }
 
-    public Optional<User> loadByIdentifier( LoginRequestDTO request ) {
-        if ( request.identifier( ).contains( "@" ) ) {
-            return userRepository.findByEmail( request.identifier( ) );
+    public Optional<User> loadByIdentifier( String identifier ) {
+        if ( identifier.contains( "@" ) ) {
+            return userRepository.findByEmail( identifier );
         }
-        return userRepository.findByUsername( request.identifier( ) );
-    }
-
-    public Optional<User> loadUserByToken( String token ) {
-        String subject = jwtTokenService.getSubjectFromToken( token.replace( "Bearer", "" ) );
-        return loadByIdentifier( new LoginRequestDTO( subject, null ) );
+        return userRepository.findByUsername( identifier );
     }
 
     private void handleFailedLoginAttempt( User user ) {
