@@ -1,5 +1,7 @@
 package com.marcal.pdumbbell.services;
 
+import com.marcal.pdumbbell.dto.data.UserDTO;
+import com.marcal.pdumbbell.dto.mappers.data.UserMapper;
 import com.marcal.pdumbbell.dto.mappers.response.UserResponseMapper;
 import com.marcal.pdumbbell.dto.response.UserResponseDTO;
 import com.marcal.pdumbbell.dto.shared.BaseResponse;
@@ -13,23 +15,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    private final AuthService authService;
-
     private final UserRepository userRepository;
 
-    public UserService( AuthService authService, UserRepository userRepository ) {
-        this.authService = authService;
+    public UserService( UserRepository userRepository ) {
         this.userRepository = userRepository;
     }
 
-    public ResponseEntity<BaseResponse> findUserByToken( String token ) {
-        User user = authService.loadUserByToken( token ).orElse( null );
+    public ResponseEntity<BaseResponse> getUserSession( UserDTO user ) {
         if ( user == null ) {
             return ResponseEntity.status( HttpStatus.UNAUTHORIZED )
                     .body( ResponseUtil.invalidTokenError( ) );
         }
-        UserResponseDTO responseDTO = UserResponseMapper.INSTANCE.toDto( userRepository.save( user ) );
-        return ResponseEntity.ok( ResponseUtil.successResponse( responseDTO, null ) );
+        User entity = UserMapper.INSTANCE.toEntity( user );
+        UserResponseDTO response = UserResponseMapper.INSTANCE.toDto( entity );
+        return ResponseEntity.ok( ResponseUtil.successResponse( response, null ) );
     }
 
 
