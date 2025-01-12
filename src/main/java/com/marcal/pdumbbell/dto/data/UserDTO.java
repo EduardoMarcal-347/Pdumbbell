@@ -8,10 +8,13 @@ import lombok.Setter;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
 public class UserDTO {
+
+    private UUID id;
 
     private String username;
 
@@ -20,8 +23,6 @@ public class UserDTO {
     private String email;
 
     private String phoneNumber;
-
-    private String passwordHash;
 
     private Boolean isEmailVerified;
 
@@ -41,13 +42,13 @@ public class UserDTO {
 
     private FileMetadata profilePicture;
 
-    public UserDTO( String username, String fullname, String email, String phoneNumber, String passwordHash, Boolean isEmailVerified, Instant lastLogin, List<Role> roles, int failedLoginAttempts, Boolean accountLocked,
+    public UserDTO( UUID id, String username, String fullname, String email, String phoneNumber, Boolean isEmailVerified, Instant lastLogin, List<Role> roles, int failedLoginAttempts, Boolean accountLocked,
                     String preferredLanguage, Boolean isActive, Instant deletedAt, FileMetadata profilePicture ) {
+        this.id = id;
         this.username = username;
         this.fullname = fullname;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.passwordHash = passwordHash;
         this.isEmailVerified = isEmailVerified;
         this.lastLogin = lastLogin;
         this.roles = roles;
