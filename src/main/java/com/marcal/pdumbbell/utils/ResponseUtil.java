@@ -14,7 +14,7 @@ public class ResponseUtil {
     public static SuccessResponseDTO<?> successResponse( Object data, String message ) {
         return new SuccessResponseDTO<>(
                 200,
-                Optional.of( message ).orElse( "The request was successfully completed!" ),
+                Optional.ofNullable( message ).orElse( "The request was successfully completed!" ),
                 Instant.now( ),
                 data
         );
@@ -66,7 +66,7 @@ public class ResponseUtil {
     public static ErrorResponseDTO unauthorizedError( String message ) {
         return errorResponse(
                 401,
-                Optional.of( message ).orElse("Unauthorized: Authentication failed")
+                Optional.ofNullable( message ).orElse("Unauthorized: Authentication failed")
         );
     }
 
