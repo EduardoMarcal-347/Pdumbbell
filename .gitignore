@@ -37,3 +37,6 @@ build/
 
 ### logs files ###
 logs
+
+### dev flyaway migration
+src/main/resources/db/migration/V2__populate_schemas.sql
