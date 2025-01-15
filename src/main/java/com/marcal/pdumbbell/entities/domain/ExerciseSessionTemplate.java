@@ -16,16 +16,16 @@ public class ExerciseSessionTemplate extends BaseEntity<Long> {
 
     private String identifier;
 
-    private int setsNumber;
+    private int qtySets;
 
     @ManyToOne()
     @JoinColumn( name = "exercise_id" )
     private Exercise exercise;
 
-    public ExerciseSessionTemplate( Long id, String identifier, int setsNumber, Exercise exercise ) {
+    public ExerciseSessionTemplate( Long id, String identifier, int qtySets, Exercise exercise ) {
         super( id );
         this.identifier = identifier;
-        this.setsNumber = setsNumber;
+        this.qtySets = qtySets;
         this.exercise = exercise;
     }
 

@@ -24,14 +24,21 @@ public class WorkoutTemplate extends BaseEntity<Long> {
             inverseJoinColumns = @JoinColumn( name = "exercise_session_template_id" ) )
     private List<ExerciseSessionTemplate> exercises;
 
+    @ManyToMany( fetch = FetchType.EAGER, cascade = CascadeType.PERSIST )
+    @JoinTable( name = "workout_target_muscles",
+            joinColumns = @JoinColumn( name = "workout_template_id" ),
+            inverseJoinColumns = @JoinColumn( name = "target_muscle_id" ) )
+    private List<TargetMuscle> targetMuscles;
+
     @ManyToOne( cascade = CascadeType.ALL )
     private User creator;
 
-    public WorkoutTemplate( Long id, String name, String description, List<ExerciseSessionTemplate> exercises, User creator ) {
+    public WorkoutTemplate( Long id, String name, String description, List<ExerciseSessionTemplate> exercises, List<TargetMuscle> targetMuscles, User creator ) {
         super( id );
         this.name = name;
         this.description = description;
         this.exercises = exercises;
+        this.targetMuscles = targetMuscles;
         this.creator = creator;
     }
 
