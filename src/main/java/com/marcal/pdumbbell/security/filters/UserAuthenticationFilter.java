@@ -1,6 +1,6 @@
 package com.marcal.pdumbbell.security.filters;
 
-import com.marcal.pdumbbell.dto.mappers.data.UserMapper;
+import com.marcal.pdumbbell.dto.mappers.impl.data.UserMapper;
 import com.marcal.pdumbbell.entities.domain.User;
 import com.marcal.pdumbbell.security.auth.UserDetailsImpl;
 import com.marcal.pdumbbell.security.service.JWTokenService;

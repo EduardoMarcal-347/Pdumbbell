@@ -27,8 +27,7 @@ public class Exercise extends BaseEntity<Long> {
     @Column( name = "target_muscles" )
     private String targetMuscles;
 
-    public Exercise( Long id, String name, String description, String tutorialUrl, FileMetadata image, String targetMuscles ) {
-        super( id );
+    public Exercise( String name, String description, String tutorialUrl, FileMetadata image, String targetMuscles ) {
         this.name = name;
         this.description = description;
         this.tutorialUrl = tutorialUrl;

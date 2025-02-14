@@ -1,8 +1,8 @@
 package com.marcal.pdumbbell.controllers;
 
-import com.marcal.pdumbbell.dto.request.LoginRequestDTO;
-import com.marcal.pdumbbell.dto.request.UserRequestDTO;
-import com.marcal.pdumbbell.dto.shared.BaseResponse;
+import com.marcal.pdumbbell.dto.rest.request.LoginRequestDTO;
+import com.marcal.pdumbbell.dto.rest.request.UserRequestDTO;
+import com.marcal.pdumbbell.dto.rest.shared.BaseResponse;
 import com.marcal.pdumbbell.services.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

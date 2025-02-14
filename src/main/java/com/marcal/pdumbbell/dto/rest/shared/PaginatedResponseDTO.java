@@ -1,4 +1,4 @@
-package com.marcal.pdumbbell.dto.shared;
+package com.marcal.pdumbbell.dto.rest.shared;
 
 import java.time.Instant;
 import java.util.List;

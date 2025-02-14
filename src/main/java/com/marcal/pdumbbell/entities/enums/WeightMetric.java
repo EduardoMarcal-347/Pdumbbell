@@ -1,5 +1,8 @@
 package com.marcal.pdumbbell.entities.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum WeightMetric {
 
         KILOGRAMS("kg"),
@@ -14,11 +17,7 @@ public enum WeightMetric {
             this.abbreviation = abbreviation;
         }
 
-        public String getAbbreviation() {
-            return abbreviation;
-        }
-
-        @Override
+    @Override
         public String toString() {
             return abbreviation;
         }

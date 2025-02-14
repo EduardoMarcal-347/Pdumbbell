@@ -28,10 +28,8 @@ public class SecurityConfig {
                         .csrfTokenRepository( CookieCsrfTokenRepository.withHttpOnlyFalse( ) )
                         .disable()
                 )
-                .authorizeHttpRequests( authorizeConfig -> {
-                    authorizeConfig.requestMatchers( "/auth/**" ).permitAll( )
-                            .anyRequest( ).authenticated( );
-                } )
+                .authorizeHttpRequests( authorizeConfig -> authorizeConfig.requestMatchers( "/auth/**" ).permitAll( )
+                        .anyRequest( ).authenticated( ) )
                 .addFilterBefore( authenticationFilter, UsernamePasswordAuthenticationFilter.class );
 
         return http.build( );

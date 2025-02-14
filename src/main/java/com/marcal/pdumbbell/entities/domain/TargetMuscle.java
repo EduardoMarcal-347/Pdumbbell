@@ -14,4 +14,10 @@ public class TargetMuscle extends BaseEntity<Long> {
     @Enumerated( EnumType.STRING )
     private Muscle name;
 
+    public TargetMuscle( Muscle name ) {
+        this.name = name;
+    }
+
+    public TargetMuscle( ) {
+    }
 }

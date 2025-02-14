@@ -1,8 +1,9 @@
 package com.marcal.pdumbbell.utils;
 
-import com.marcal.pdumbbell.dto.shared.ErrorResponseDTO;
-import com.marcal.pdumbbell.dto.shared.LoginResponseDTO;
-import com.marcal.pdumbbell.dto.shared.SuccessResponseDTO;
+
+import com.marcal.pdumbbell.dto.rest.shared.ErrorResponseDTO;
+import com.marcal.pdumbbell.dto.rest.shared.LoginResponseDTO;
+import com.marcal.pdumbbell.dto.rest.shared.SuccessResponseDTO;
 
 import java.time.Instant;
 import java.time.ZoneOffset;

@@ -23,11 +23,9 @@ public class PdumbbellApplication {
 
     @Bean
     BeanFactoryPostProcessor beanFactoryPostProcessor( ApplicationContext beanRegistry ) {
-        return beanFactory -> {
-            genericApplicationContext(
-                    ( BeanDefinitionRegistry ) ( ( AnnotationConfigServletWebServerApplicationContext ) beanRegistry)
-                            .getBeanFactory( ) );
-        };
+        return beanFactory -> genericApplicationContext(
+                ( BeanDefinitionRegistry ) ( ( AnnotationConfigServletWebServerApplicationContext ) beanRegistry)
+                        .getBeanFactory( ) );
     }
 
     void genericApplicationContext( BeanDefinitionRegistry beanRegistry ) {

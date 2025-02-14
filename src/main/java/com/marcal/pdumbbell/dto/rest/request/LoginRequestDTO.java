@@ -1,4 +1,4 @@
-package com.marcal.pdumbbell.dto.request;
+package com.marcal.pdumbbell.dto.rest.request;
 
 import jakarta.validation.constraints.NotBlank;
 

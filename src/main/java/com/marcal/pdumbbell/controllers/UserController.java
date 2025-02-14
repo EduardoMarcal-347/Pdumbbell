@@ -3,7 +3,7 @@ package com.marcal.pdumbbell.controllers;
 
 import com.marcal.pdumbbell.common.annotation.AuthenticatedUser;
 import com.marcal.pdumbbell.dto.data.UserDTO;
-import com.marcal.pdumbbell.dto.shared.BaseResponse;
+import com.marcal.pdumbbell.dto.rest.shared.BaseResponse;
 import com.marcal.pdumbbell.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

@@ -33,8 +33,7 @@ public class WorkoutTemplate extends BaseEntity<Long> {
     @ManyToOne( cascade = CascadeType.ALL )
     private User creator;
 
-    public WorkoutTemplate( Long id, String name, String description, List<ExerciseSessionTemplate> exercises, List<TargetMuscle> targetMuscles, User creator ) {
-        super( id );
+    public WorkoutTemplate( String name, String description, List<ExerciseSessionTemplate> exercises, List<TargetMuscle> targetMuscles, User creator ) {
         this.name = name;
         this.description = description;
         this.exercises = exercises;

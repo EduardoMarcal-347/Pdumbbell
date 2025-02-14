@@ -1,6 +1,5 @@
-package com.marcal.pdumbbell.dto.request;
+package com.marcal.pdumbbell.dto.rest.request;
 
-import com.marcal.pdumbbell.dto.common.ExerciseDTO;
 import com.marcal.pdumbbell.dto.common.SessionTemplateDTO;
 import com.marcal.pdumbbell.entities.domain.TargetMuscle;
 import jakarta.validation.constraints.NotBlank;
@@ -14,9 +13,7 @@ public record WorkoutTemplateReqDTO(
         String description,
 
         @NotBlank(message = "Username/Email must not be null.")
-        List<ExerciseDTO> exercises,
-
-        List<SessionTemplateDTO> sessionTemplates,
+        List<SessionTemplateDTO> exercises,
 
         List<TargetMuscle> targetMuscles
 ) { }

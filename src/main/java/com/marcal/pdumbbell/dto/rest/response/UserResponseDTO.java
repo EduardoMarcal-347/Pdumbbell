@@ -1,4 +1,4 @@
-package com.marcal.pdumbbell.dto.response;
+package com.marcal.pdumbbell.dto.rest.response;
 
 import lombok.Getter;
 import lombok.Setter;

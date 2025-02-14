@@ -22,9 +22,7 @@ public class ExerciseSessionTemplate extends BaseEntity<Long> {
     @JoinColumn( name = "exercise_id" )
     private Exercise exercise;
 
-    public ExerciseSessionTemplate( Long id, String identifier, int qtySets, Exercise exercise ) {
-        super( id );
-        this.identifier = identifier;
+    public ExerciseSessionTemplate( int qtySets, Exercise exercise ) {
         this.qtySets = qtySets;
         this.exercise = exercise;
     }

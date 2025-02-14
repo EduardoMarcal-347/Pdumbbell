@@ -1,7 +1,6 @@
 package com.marcal.pdumbbell.entities.domain;
 
 import com.marcal.pdumbbell.entities.base.BaseEntityUUID;
-import com.marcal.pdumbbell.entities.enums.AccessRole;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,7 +37,6 @@ public class User extends BaseEntityUUID {
 
     @Column( name = "last_login" )
     private Instant lastLogin;
-
 
     @ManyToMany( fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable( name = "users_roles",

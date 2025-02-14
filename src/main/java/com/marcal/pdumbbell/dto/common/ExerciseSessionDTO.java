@@ -4,6 +4,5 @@ import java.util.List;
 
 public record ExerciseSessionDTO(
     ExerciseDTO exercise,
-    List<TrainingSetDTO> sets,
-    WorkoutDTO workout
+    List<TrainingSetDTO> sets
 ) { }

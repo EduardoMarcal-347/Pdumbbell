@@ -1,14 +1,13 @@
 package com.marcal.pdumbbell.services;
 
 import com.marcal.pdumbbell.dto.data.UserDTO;
-import com.marcal.pdumbbell.dto.mappers.data.UserMapper;
-import com.marcal.pdumbbell.dto.mappers.request.UserRequestMapper;
-import com.marcal.pdumbbell.dto.mappers.response.UserResponseMapper;
-import com.marcal.pdumbbell.dto.request.LoginRequestDTO;
-import com.marcal.pdumbbell.dto.request.UserRequestDTO;
-import com.marcal.pdumbbell.dto.response.UserResponseDTO;
-import com.marcal.pdumbbell.dto.shared.BaseResponse;
-import com.marcal.pdumbbell.dto.shared.ErrorResponseDTO;
+import com.marcal.pdumbbell.dto.mappers.impl.data.UserMapper;
+import com.marcal.pdumbbell.dto.mappers.impl.rest.UserRestMapper;
+import com.marcal.pdumbbell.dto.rest.request.LoginRequestDTO;
+import com.marcal.pdumbbell.dto.rest.request.UserRequestDTO;
+import com.marcal.pdumbbell.dto.rest.response.UserResponseDTO;
+import com.marcal.pdumbbell.dto.rest.shared.BaseResponse;
+import com.marcal.pdumbbell.dto.rest.shared.ErrorResponseDTO;
 import com.marcal.pdumbbell.entities.domain.User;
 import com.marcal.pdumbbell.repositories.UserRepository;
 import com.marcal.pdumbbell.security.auth.UserDetailsImpl;
@@ -46,9 +45,9 @@ public class AuthService {
                     .status( HttpStatus.CONFLICT )
                     .body( conflictFieldMessage );
         }
-        User user = UserRequestMapper.INSTANCE.toEntity( request );
+        User user = UserRestMapper.INSTANCE.toEntity( request );
         user.setPasswordHash( passwordService.encodePassword( request.password( ) ) );
-        UserResponseDTO responseDTO = UserResponseMapper.INSTANCE.toDto( userRepository.save( user ) );
+        UserResponseDTO responseDTO = UserRestMapper.INSTANCE.toDto( userRepository.save( user ) );
         return ResponseEntity.ok( ResponseUtil.createSuccessResponse( responseDTO, "User" ) );
     }
 

@@ -1,8 +1,8 @@
-package com.marcal.pdumbbell.dto.mappers.rest;
+package com.marcal.pdumbbell.dto.mappers.impl.rest;
 
 import com.marcal.pdumbbell.dto.mappers.RestMapper;
-import com.marcal.pdumbbell.dto.request.UserRequestDTO;
-import com.marcal.pdumbbell.dto.response.UserResponseDTO;
+import com.marcal.pdumbbell.dto.rest.request.UserRequestDTO;
+import com.marcal.pdumbbell.dto.rest.response.UserResponseDTO;
 import com.marcal.pdumbbell.entities.domain.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

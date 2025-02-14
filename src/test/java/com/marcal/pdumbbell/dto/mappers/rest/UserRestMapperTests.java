@@ -1,14 +1,14 @@
-package com.marcal.pdumbbell.dto.mappers.response.user;
+package com.marcal.pdumbbell.dto.mappers.rest;
 
-import com.marcal.pdumbbell.dto.mappers.response.UserResponseMapper;
-import com.marcal.pdumbbell.dto.response.UserResponseDTO;
+import com.marcal.pdumbbell.dto.mappers.impl.rest.UserRestMapper;
+import com.marcal.pdumbbell.dto.rest.response.UserResponseDTO;
 import com.marcal.pdumbbell.entities.domain.User;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class UserRequestMapperTests {
+public class UserRestMapperTests {
 
     @Test
     public void testToDto() {
@@ -17,7 +17,7 @@ public class UserRequestMapperTests {
         entity.setEmail( "test@gmail.com" );
         entity.setPhoneNumber( "70707070" );
 
-        UserResponseDTO responseDTO = UserResponseMapper.INSTANCE.toDto( entity );
+        UserResponseDTO responseDTO = UserRestMapper.INSTANCE.toDto( entity );
         assertNotNull( responseDTO );
         assertEquals( entity.getFullname(), responseDTO.getFullname() );
         assertEquals( entity.getEmail(), responseDTO.getEmail() );
